@@ -1,0 +1,48 @@
+{
+  "name": "config-update-tool",
+  "version": "0.1.0",
+  "description": "Command line tool for keeping configuration file up to date with templates",
+  "main": "src/ConfigTool.js",
+  "scripts": {
+    "start": "node bin/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "help": "node bin/index.js --help",
+    "example": "node bin/index.js -i test/example/template.json -m create"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/treble-snake/config-update-tool.git"
+  },
+  "bugs": {
+    "url": "https://github.com/treble-snake/config-update-tool/issues"
+  },
+  "engines": {
+    "node": ">=7.10.1"
+  },
+  "keywords": [
+    "config",
+    "configuration",
+    "update",
+    "actualize",
+    "merge",
+    "tool",
+    "util",
+    "utility"
+  ],
+  "author": "treble.snake",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "cli-cursor": "^2.1.0",
+    "debug": "^3.1.0",
+    "figures": "^2.0.0",
+    "fs-extra": "^5.0.0",
+    "inquirer": "^5.0.0",
+    "lodash": "^4.17.4",
+    "path-type": "^3.0.0",
+    "yargs": "^10.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.16.0"
+  }
+}

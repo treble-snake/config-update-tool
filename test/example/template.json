@@ -1,0 +1,25 @@
+{
+  "options": {
+    "numericProperty": 42,
+    "stringProperty": "Hello, world!",
+    "booleanProperty": true,
+    "numericArray": [42, 777],
+    "stringArray": ["Have", "a nice", "day"],
+    "booleanArray": [true, false],
+    "objectArray": [
+      {
+        "position": 1,
+        "name": "first"
+      },      {
+        "position": 2,
+        "name": "second"
+      }
+    ],
+    "innerObject": {
+      "name": "Qui-Gon",
+      "padawan": {
+        "name": "Obi-wan"
+      }
+    }
+  }
+}
