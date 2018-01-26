@@ -2,6 +2,7 @@ const path = require('path');
 
 const JsJsonInputAdapter = require('./input/JsJsonAdatper');
 const JsonOutputAdapter = require('./output/JsonAdapter');
+const JsOutputAdapter = require('./output/JsAdapter');
 
 class AdapterRegistry {
   constructor() {
@@ -12,6 +13,7 @@ class AdapterRegistry {
     this.registerInput('.js', jsJsonInputAdapter);
     this.registerInput('.json', jsJsonInputAdapter);
 
+    this.registerOutput('.js', new JsOutputAdapter());
     this.registerOutput('.json', new JsonOutputAdapter());
   }
 

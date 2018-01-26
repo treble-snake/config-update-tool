@@ -14,9 +14,11 @@ Prerequisites: Node.js (>=7.10).
 Sorry, but this is it for now. I'm planning to add v6 compatibility.
 
 ### Available formats
-The tool can read **.js** and **.json** files and write **.json** files for now.
+The tool can:
+ - read **.js** and **.json** files; 
+ - write **.js** and **.json** files.
 
-I'm going to add full **.js** support, also **.yml** and **.xml**.
+I'm going to add **.yml** and **.xml** support.
 
 ### Using as a stand-alone tool
 Install the tool globally by running
