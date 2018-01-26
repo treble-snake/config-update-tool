@@ -12,7 +12,7 @@ class CmdArgsParser {
   static parse() {
 
     return yargs
-      .usage(`Usage: npm start -- [--${CMD_OPTIONS.mode} <mode>] [--${CMD_OPTIONS.input} <path>] \
+      .usage(`Usage: config-update-tool [--${CMD_OPTIONS.mode} <mode>] [--${CMD_OPTIONS.input} <path>] \
 [--${CMD_OPTIONS.output} <path>] [--${CMD_OPTIONS.backup}]`)
       .boolean(CMD_OPTIONS.backup)
       .string(CMD_OPTIONS.input)
@@ -53,15 +53,15 @@ class CmdArgsParser {
       })
 
       .describe('m', 'Usage mode: `create` for new config file and `merge` for modifying existing one')
+      .describe('i', 'Path to the input file')
       .describe('o', 'Path to the output file')
       .describe('b', 'Make a backup of the output file')
-      .describe('i', 'Path to the input file')
       .describe('no-b', 'Don\'t make a backup of the output file')
 
       .alias('m', CMD_OPTIONS.mode)
+      .alias('i', CMD_OPTIONS.input)
       .alias('o', CMD_OPTIONS.output)
       .alias('b', CMD_OPTIONS.backup)
-      .alias('i', CMD_OPTIONS.input)
 
       .parse();
   }
