@@ -122,14 +122,14 @@ class EditArrayPrompt extends Base {
     let message = this.getQuestion();
 
     if (this.firstRender) {
-      message += chalk.dim('(Use arrow keys and Enter to finish)');
+      message += chalk.yellow('(Use arrow keys and Enter to finish)');
     }
 
     // Render choices or answer depending on the state
     if (this.status === 'answered') {
       message += chalk.cyan(this.selectedAction.name);
     } else {
-      message += chalk.gray(`\n// ${HINT}`);
+      message += chalk.yellow(`\n// ${HINT}`);
 
       const choicesStr = this._renderList();
       const indexPosition = this.opt.choices.indexOf(
