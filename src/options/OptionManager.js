@@ -15,14 +15,21 @@ const OPTIONS_MAPPING = {
 };
 
 class OptionsManager {
-  constructor() {
-    this.options = new ToolOptions();
+
+  /**
+   * @param {ToolOptions|Object} options
+   */
+  constructor(options) {
+    this.options = options instanceof ToolOptions ?
+      options : new ToolOptions(options);
   }
 
   _parseCommandLineOptions() {
-    Object.values(CMD_OPTIONS).forEach(name => {
-      this.options[OPTIONS_MAPPING[name]] = PARSED_ARGS[name];
-    });
+    Object.values(CMD_OPTIONS)
+      .filter(name => this.options[OPTIONS_MAPPING[name]] === null)
+      .forEach(name => {
+        this.options[OPTIONS_MAPPING[name]] = PARSED_ARGS[name];
+      });
   }
 
   async _getOptionsFromUser() {
@@ -43,6 +50,7 @@ class OptionsManager {
    * @return {Promise<ToolOptions>}
    */
   async configure() {
+    await this.options.validateFilledOptions();
     await this._parseCommandLineOptions();
     await this._getOptionsFromUser();
 

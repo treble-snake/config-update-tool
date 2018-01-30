@@ -45,6 +45,20 @@ class FileManager {
    * @param {string} filePath
    * @throws {Error}
    */
+  static async ensureOutputPath(filePath) {
+    const dir = path.dirname(FileManager.getFullPath(filePath));
+
+    // will throw an exception on failure
+    await fsExtra.ensureDir(dir);
+
+    // check if dir is writable
+    await fsAccessAsync(dir, fs.constants.W_OK); // TODO test on unix
+  }
+
+  /**
+   * @param {string} filePath
+   * @throws {Error}
+   */
   static ensureOutputPathSync(filePath) {
     const dir = path.dirname(FileManager.getFullPath(filePath));
 
@@ -53,6 +67,21 @@ class FileManager {
 
     // check if dir is writable
     fs.accessSync(dir, fs.constants.W_OK); // TODO test on unix
+  }
+
+  /**
+   * @param {string} relativePath
+   * @param {boolean} write
+   * @return {boolean}
+   */
+  static fileExistsSync(relativePath, write = false) {
+    try {
+      fs.accessSync(FileManager.getFullPath(relativePath),
+        write ? fs.constants.W_OK : fs.constants.R_OK);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   /**

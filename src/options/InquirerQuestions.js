@@ -1,9 +1,6 @@
-const FileManager = require('../files/FileManager');
 const ToolOptions = require('./ToolOptions');
 
 const {
-  ALLOWED_INPUT,
-  ALLOWED_OUTPUT,
   MODES
 } = require('./Constants');
 
@@ -21,32 +18,12 @@ function getFileValidator(write = false) {
 
     // for writing request
     if (write) {
-      if (await FileManager.fileExists(value, true)) {
-        return true;
-      }
-
-      try {
-        FileManager.ensureOutputPathSync(value);
-        if (!FileManager.isExtAllowed(value, ALLOWED_OUTPUT)) {
-          return 'Output file extension is not supported';
-        }
-
-        return true;
-      } catch (e) {
-        return e.message;
-      }
+      await ToolOptions.validateOutputFile(value);
+      return true;
     }
-
     // for reading request
     else {
-      if (!await FileManager.isFile(value)) {
-        return 'Input file doesn\'t exist';
-      }
-
-      if (!FileManager.isExtAllowed(value, ALLOWED_INPUT)) {
-        return 'Input file extension is not supported';
-      }
-
+      await ToolOptions.validateInputFile(value);
       return true;
     }
   };
