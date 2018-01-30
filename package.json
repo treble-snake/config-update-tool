@@ -1,6 +1,6 @@
 {
   "name": "config-update-tool",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Command line tool for keeping configuration file up to date with templates",
   "main": "src/ConfigTool.js",
   "bin": {
@@ -21,7 +21,7 @@
     "url": "https://github.com/treble-snake/config-update-tool/issues"
   },
   "engines": {
-    "node": ">=7.10.1"
+    "node": ">=8.0.0"
   },
   "keywords": [
     "config",

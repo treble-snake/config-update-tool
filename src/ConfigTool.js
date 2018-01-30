@@ -15,20 +15,26 @@ const {MODES} = require('./options/Constants');
 class ConfigTool {
 
   /**
+   * Initiates config updating process
+   * @param {ToolOptions} [options] - this values will NOT be overwritten with
+   * command line options
    * @return {Promise<void>}
    */
-  static async run() {
+  static async run(options) {
     const tool = new ConfigTool();
-    await tool.run();
+    await tool.run(options);
   }
 
   /**
+   * Initiates config updating process
+   * @param {ToolOptions} [options] - this values will NOT be overwritten with
+   * command line options
    * @return {Promise<void>}
    */
-  async run() {
+  async run(options) {
     console.log(chalk.blue(`Working from: ${process.cwd()} (you can enter paths relative to this)`));
 
-    const options = await (new OptionManager()).configure();
+    options = await (new OptionManager(options)).configure();
     const {inputFile, outputFile, mode, backupRequired} = options;
 
     console.log(chalk.blue(`\nRunning with options: ${JSON.stringify(options, null, '\t')}`));

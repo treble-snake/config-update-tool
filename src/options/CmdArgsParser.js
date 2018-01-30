@@ -1,9 +1,7 @@
 const yargs = require('yargs');
-const FileManager = require('../files/FileManager');
+const ToolOptions = require('../options/ToolOptions');
 
 const {
-  ALLOWED_INPUT,
-  ALLOWED_OUTPUT,
   MODES,
   CMD_OPTIONS
 } = require('./Constants');
@@ -28,27 +26,14 @@ class CmdArgsParser {
         if (value === null) {
           return null;
         }
-
-        if (!FileManager.isFileSync(value)) {
-          throw new Error('Input file doesn\'t exist');
-        }
-
-        if (!FileManager.isExtAllowed(value, ALLOWED_INPUT)) {
-          throw new Error('Input file extension is not supported');
-        }
-
+        ToolOptions.validateInputFileSync(value);
         return value;
       })
       .coerce('o', value => {
         if (value === null) {
           return null;
         }
-
-        FileManager.ensureOutputPathSync(value);
-        if (!FileManager.isExtAllowed(value, ALLOWED_OUTPUT)) {
-          throw new Error('Output file extension is not supported');
-        }
-
+        ToolOptions.validateOutputFileSync(value);
         return value;
       })
 
