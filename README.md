@@ -9,7 +9,7 @@ So this command line tool could help you update your config files fast and handy
 _Please, consider that it's just an MVP yet. I'm working on improvements (see [GitHub Issues](https://github.com/treble-snake/config-update-tool/issues) if interested)._
 
 ## Installation and usage 
-Prerequisites: Node.js (>=7.10).
+Prerequisites: Node.js (>=8).
 
 Sorry, but this is it for now. I'm planning to add v6 compatibility.
 
@@ -67,6 +67,13 @@ And then just run it from your code like that:
 ```
 const ConfigTool = require('config-update-tool');
 
-ConfigTool.run()
+ConfigTool.run([options])
   .catch(e => console.error(e));
 ```
+You can pass all or some of the following options as `options` object properties:
+* **mode** - work mode (create or merge)
+* **inputFile** - absolute or relative to cwd path to the input config template file
+* **outputFile** - absolute or relative to cwd path to the config output file
+* **backupRequired** - if true, tool will make attempt to create a backup copy of the output file
+
+These options will **NOT** be overwritten by command line arguments.
