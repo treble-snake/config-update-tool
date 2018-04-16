@@ -3,7 +3,11 @@ const chalk = require('chalk');
 const PromptFactory = require('./PromptFactory');
 
 class ObjectManager {
-  constructor() {
+  /**
+   * @param {boolean} [isForce=false] if true, just takes template values without user prompt
+   */
+  constructor(isForce = false) {
+    this.isForce = isForce;
   }
 
   async fillObject(template, blockName) {
@@ -24,7 +28,8 @@ class ObjectManager {
       }
 
       try {
-        result[key] = await PromptFactory.getValue(`${blockName}.${key}`, templateValue);
+        result[key] = this.isForce ? templateValue :
+          await PromptFactory.getValue(`${blockName}.${key}`, templateValue);
       } catch (e) {
         result[key] = templateValue;
         console.log(chalk.yellow(`Sorry, ${e.message}. Default value is used.`));

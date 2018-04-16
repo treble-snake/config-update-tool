@@ -35,11 +35,11 @@ class ConfigTool {
     console.log(chalk.blue(`Working from: ${process.cwd()} (you can enter paths relative to this)`));
 
     options = await (new OptionManager(options)).configure();
-    const {inputFile, outputFile, mode, backupRequired} = options;
+    const {inputFile, outputFile, mode, backupRequired, isForce} = options;
 
     console.log(chalk.blue(`\nRunning with options: ${JSON.stringify(options, null, '\t')}`));
 
-    const editor = new ConfigEditor();
+    const editor = new ConfigEditor(isForce);
     const result = await (mode === MODES.merge ?
       editor.merge(inputFile, outputFile) :
       editor.create(inputFile));

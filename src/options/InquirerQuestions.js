@@ -59,6 +59,16 @@ const QUESTIONS_SET = {
       choice(false, 'No')
     ],
     default: 0
+  },
+  [OPTION_LIST.isForce]: {
+    name: OPTION_LIST.isForce,
+    message: 'Use template values and don\'t ask for user prompt',
+    type: 'list',
+    choices: [
+      choice(true, 'Yes'),
+      choice(false, 'No')
+    ],
+    default: 1
   }
 };
 

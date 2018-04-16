@@ -13,6 +13,7 @@ module.exports = {
     mode: 'mode',
     input: 'input',
     output: 'output',
-    backup: 'backup'
+    backup: 'backup',
+    force: 'force'
   }
 };
