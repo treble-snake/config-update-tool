@@ -11,7 +11,8 @@ const OPTIONS_MAPPING = {
   [CMD_OPTIONS.mode]: OPTION_LIST.mode,
   [CMD_OPTIONS.input]: OPTION_LIST.inputFile,
   [CMD_OPTIONS.output]: OPTION_LIST.outputFile,
-  [CMD_OPTIONS.backup]: OPTION_LIST.backupRequired
+  [CMD_OPTIONS.backup]: OPTION_LIST.backupRequired,
+  [CMD_OPTIONS.force]: OPTION_LIST.isForce
 };
 
 class OptionsManager {
