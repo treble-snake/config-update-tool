@@ -21,7 +21,7 @@ The tool can:
 I'm going to add **.yml** and **.xml** support.
 
 ### Using as a stand-alone tool
-Install the tool globally by running
+Install the tool globally (or locally without `-g` flag) by running
 ```
 npm install -g config-update-tool
 ```
@@ -33,7 +33,7 @@ _You can also clone [the repo](https://github.com/treble-snake/config-update-too
 You should see the following: 
 ```
 Usage: config-update-tool [--mode <mode>] [--input <path>] [--output <path>] 
-[--backup]
+[--backup] [--force]
 
 Options:
   --help        Show help                                              [boolean]
@@ -44,6 +44,9 @@ Options:
   -o, --output  Path to the output file                 [string] [default: null]
   -b, --backup  Make a backup of the output file       [boolean] [default: null]
   --no-b        Don't make a backup of the output file
+  -f, --force   Tool won't ask for user prompt and use template values
+                                                       [boolean] [default: null]
+  --no-f        Tool will ask for user prompt
 ```
 
 All arguments are optional, you will be asked to enter missing ones in interactive mode anyway.
@@ -75,5 +78,6 @@ You can pass all or some of the following options as `options` object properties
 * **inputFile** - absolute or relative to cwd path to the input config template file
 * **outputFile** - absolute or relative to cwd path to the config output file
 * **backupRequired** - if true, tool will make attempt to create a backup copy of the output file
+* **isForce** - if true, tool will take template values and won't ask for user prompt
 
 These options will **NOT** be overwritten by command line arguments.

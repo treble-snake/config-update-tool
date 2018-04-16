@@ -1,6 +1,6 @@
 {
   "name": "config-update-tool",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Command line tool for keeping configuration file up to date with templates",
   "main": "src/ConfigTool.js",
   "bin": {
@@ -10,6 +10,7 @@
   "scripts": {
     "start": "node bin/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "preversion": "eslint ./",
     "help": "node bin/index.js --help",
     "example": "node bin/index.js -i test/example/template.json -m create"
   },

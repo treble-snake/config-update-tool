@@ -8,8 +8,11 @@ const PromptFactory = require('./PromptFactory');
 const ROOT_BLOCK = '[root]';
 
 class ConfigEditor {
-
-  constructor() {
+  /**
+   * @param {boolean} [isForce=false] if true, just takes template values without user prompt
+   */
+  constructor(isForce = false) {
+    this.isForce = isForce;
   }
 
   async merge(inputPath, outputPath) {
@@ -22,7 +25,7 @@ class ConfigEditor {
   // noinspection JSMethodCanBeStatic
   async create(inputPath) {
     const input = AdapterRegistry.getInputAdapter(inputPath).parse(inputPath);
-    return (new ObjectManager()).fillObject(input, ROOT_BLOCK);
+    return (new ObjectManager(this.isForce)).fillObject(input, ROOT_BLOCK);
   }
 
   async _produceMerge(template, current, blockName = '[root]') {
@@ -40,8 +43,8 @@ class ConfigEditor {
         }
 
         console.log(chalk.green(`\nNew properties' block: ${blockKey}`));
-        result[key] = await (new ObjectManager()).fillObject(content, blockKey);
-        // result[key] = await this._fillObject(content, blockKey);
+        result[key] =
+          await (new ObjectManager(this.isForce)).fillObject(content, blockKey);
         continue;
       }
 
@@ -51,7 +54,8 @@ class ConfigEditor {
       }
 
       try {
-        result[key] = await PromptFactory.getValue(blockKey, content);
+        result[key] = this.isForce ? content :
+          await PromptFactory.getValue(blockKey, content);
       } catch (e) {
         result[key] = content;
         console.log(chalk.yellow(`Sorry, ${e.message}. Default value is used.`));
